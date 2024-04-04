@@ -55,7 +55,7 @@ const Home = () => {
         </form>
 
 
-        <div className='sm:w-[60%] md:w-full w-full p-5'>
+        <div className='sm:w-[60%]  w-full p-5'>
           <DetailsPage />
         </div>
       </div>

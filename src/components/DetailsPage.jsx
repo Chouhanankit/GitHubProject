@@ -22,8 +22,8 @@ const DetailsPage = () => {
             <>
                 <div className='sm:w-[100%] w-full h-auto flex flex-col items-center justify-center'>
 
-                    <div className="sm:p-5 p-4 sm:w-[59%] h-[60vh] sm:flex justify-center text-sm text-gray-500  bg-[#1F2A48] border border-gray-400 rounded-2xl shadow-sm  ">
-                        <div className='flex justify-center w-auto sm:px-1 sm:mt-0 mt-2 sm:visible  '>
+                    <div className="sm:p-8 p-4 sm:w-[100%]  h-[60vh] sm:flex justify-center text-sm text-gray-500  bg-[#1F2A48] border border-gray-400 rounded-2xl shadow-sm  ">
+                        <div className='flex justify-center w-auto sm:px-1 sm:mt-0 mt-2 sm:mr-10 sm:visible  '>
 
                             <a href="#">
                                 <img className="sm:w-32 w-[55px] sm:h-24 rounded-full" src={!user ? "" : user.avatar_url} alt="Jese Leos" />
