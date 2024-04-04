@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400..700&family=Reddit+Mono:wght@200..900&display=swap');
+* {
+    font-family: "Reddit Mono", monospace;
+    font-weight: 100;
+    font-style: normal;
+    /* border: 1px solid red; */
+}
