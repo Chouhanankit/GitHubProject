@@ -10,8 +10,8 @@ const DetailsPage = () => {
     const { user, isLoading } = useSelector((state) => state.auth)
     if (isLoading) {
         return (
-            <div className="container bg-[#141C2F] h-[100vh]">
-                <h1 className='text-2xl  text-red-400 justify-center items-center'>Loading....</h1>
+            <div className="container  text-center bg-[#141C2F] h-[100vh]">
+                <h1 className='text-2xl p-10 text-red-400 '>Loading....</h1>
             </div>
         )
     }

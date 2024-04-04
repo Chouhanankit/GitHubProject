@@ -5,7 +5,6 @@ const getUsers = async (formData) => {
     return response.data;
 }
 
-
 const getUserRepos = async (formData) => {
     const response = await axios.get(API_URL + formData + "/repos")
     return response.data;

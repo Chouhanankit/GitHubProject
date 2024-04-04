@@ -12,16 +12,6 @@ const LinkDetails = ({ repo }) => {
 
     const { repos } = useSelector((state) => state.auth)
 
-    if (!repos) {
-        return (
-            <div className="conatiner text-center w-[100vh] bg-[#141C2F] ">
-                <h1 className='text-red-400 font-bold'>Loading Please Wait</h1>
-            </div>
-        )
-    }
-
-
-
     return (
         <>
             <div className='sm:p-5 sm:w-[70%] w-[80%] p-3  border-2 rounded-xl bg-gray-900 text-gray-400'>

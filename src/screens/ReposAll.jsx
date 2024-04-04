@@ -10,6 +10,13 @@ const ReposAll = () => {
     const dispatch = useDispatch()
 
 
+    if (repos) {
+        return (
+            <div className="conatiner text-center h-[100vh] bg-[#141C2F] ">
+                <h1 className='text-red-400 text-2xl p-10 font-bold'>Loading Please Wait</h1>
+            </div>
+        )
+    }
 
     useEffect(() => {
         dispatch(getAllUserRepos(!user ? "ChouhanAnkit" : user.login))
