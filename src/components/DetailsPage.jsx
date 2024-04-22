@@ -10,7 +10,7 @@ const DetailsPage = () => {
     const { user, isLoading } = useSelector((state) => state.auth)
     if (isLoading) {
         return (
-            <div className="container  text-center bg-[#141C2F] h-[100vh]">
+            <div className="container  text-center bg-[#141C2F] h-[100vh] w-100">
                 <h1 className='text-2xl p-10 text-red-400 '>Loading....</h1>
             </div>
         )

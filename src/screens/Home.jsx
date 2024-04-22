@@ -31,7 +31,7 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <div className="container text-center bg-[#141C2F] h-[100vh]">
+      <div className="container text-center bg-[#141C2F] w-100 h-[100vh]">
         <h1 className='text-2xl text-red-400 p-10'>Loading....</h1>
       </div>
     )
