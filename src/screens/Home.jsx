@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { getAllUsers } from '../features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import DetailsPage from '../components/DetailsPage'
-import { CiSearch } from "react-icons/ci";
 
 
 const Home = () => {
