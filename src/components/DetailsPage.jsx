@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosLink } from "react-icons/io";
 import { FaTwitter } from "react-icons/fa";
@@ -7,116 +7,101 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const DetailsPage = () => {
-    const { user, isLoading } = useSelector((state) => state.auth)
+    const { user, isLoading } = useSelector((state) => state.auth);
+
     if (isLoading) {
         return (
-            <div className="container  text-center bg-[#141C2F] h-[100vh] w-100">
-                <h1 className='text-2xl p-10 text-red-400 '>Loading....</h1>
+            <div className="flex items-center justify-center bg-[#141C2F] h-screen text-center">
+                <h1 className="text-2xl text-red-400">Loading...</h1>
             </div>
-        )
+        );
     }
 
+    if (!user) return null;
 
-    if (user) {
-        return (
-            <>
-                <div className='sm:w-[100%] w-full h-auto flex flex-col items-center justify-center'>
+    return (
+        <div className="w-full min-h-screen px-4 py-8 sm:px-10 bg-[#141C2F] text-gray-300 flex flex-col items-center">
+            <div className="w-full max-w-4xl bg-[#1F2A48] border border-gray-600 rounded-2xl p-6 sm:p-10 shadow-md flex flex-col sm:flex-row gap-6">
+                {/* Profile Image */}
+                <div className="flex justify-center sm:justify-start">
+                    <img
+                        className="w-20 h-20 sm:w-32 sm:h-32 rounded-full"
+                        src={user.avatar_url}
+                        alt={user.name || user.login}
+                    />
+                </div>
 
-                    <div className="sm:p-8 p-4 sm:w-[100%]  h-[60vh] sm:flex justify-center text-sm text-gray-500  bg-[#1F2A48] border border-gray-400 rounded-2xl shadow-sm  ">
-                        <div className='flex justify-center w-auto sm:px-1 sm:mt-0 mt-2 sm:mr-10 sm:visible  '>
+                {/* User Details */}
+                <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row justify-between">
+                        <h2 className="text-2xl font-bold text-white">{user.name || "No Name"}</h2>
+                        <p className="text-xs text-gray-400">Joined {new Date(user.created_at).toUTCString().slice(0, 16)}</p>
+                    </div>
 
-                            <a href="#">
-                                <img className="sm:w-32 w-[55px] sm:h-24 rounded-full" src={!user ? "" : user.avatar_url} alt="Jese Leos" />
-                            </a>
+                    <p className="text-blue-400 mt-1">
+                        <a href={user.html_url} target="_blank" rel="noopener noreferrer">@{user.login}</a>
+                    </p>
+
+                    <p className="mt-4 h-20 overflow-y-auto text-sm">
+                        {user.bio || "No bio available."}
+                    </p>
+
+                    {/* Stats Section */}
+                    <div className="bg-[#141C2F] rounded-xl p-4 mt-6 flex justify-around text-center text-white">
+                        <div>
+                            <p className="text-xs">Repos</p>
+                            <p className="font-semibold">{user.public_repos}</p>
                         </div>
-                        <div className=" mx-2 w-full mt-1">
-                            <div className='flex justify-between'>
-                                <div>
-                                    <p className="text-2xl font-bold leading-none text-gray-200 dark:text-white">
-                                        <a href="#">{!user ? "" : user.name}</a>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p type="text" className="text-gray-200 font-medium rounded-lg text-xs">Joined  {new Date(!user ? "" : user.created_at).toUTCString("en-IN").slice(0, 16)}</p>
-                                </div>
-
-                            </div>
-
-
-                            <p className="mb-2 mt-2 text-sm text-blue-400 font-normal">
-                                <a href={!user ? "" : user.html_url} className="hover:underline">@{!user ? "" : user.login}</a>
-                            </p>
-                            <p className=" w-full mt-5 p-1 h-20 flex  items-center text-sm text-gray-300">{!user ? "" : (!user.bio ? "No bio" : "")} </p>
-
-                            <div className='border-none sm:mt-5 sm:py-7 py-3 w-full rounded-xl bg-[#141C2F] flex justify-around '>
-                                <ul className="flex  text-sm w-full justify-around text-gray-200">
-                                    <li className="me-2 flex flex-col">
-                                        <span>Repose</span>
-                                        <a href="#" className="hover:underline">
-                                            <span className="font-semibold text-gray-100 dark:text-white">{!user ? "" : user.public_repos}</span>
-                                        </a>
-                                    </li>
-                                    <li className="me-2 flex flex-col">
-                                        <span>Followers</span>
-                                        <a href="#" className="hover:underline">
-                                            <span className="font-semibold text-gray-100 dark:text-white">{!user ? "" : user.followers}</span>
-                                        </a>
-                                    </li>
-                                    <li className='flex flex-col'>
-                                        <span>Following</span>
-                                        <a href="#" className="hover:underline">
-                                            <span className="font-semibold text-gray-100 dark:text-white">{!user ? "" : user.following}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div className='sm:p-4 mt-2 sm:pr-20 text-gray-300 sm:text-[16px]'>
-                                <ul className='flex justify-between items-center gap-4'>
-                                    <span className='flex flex-col gap-3'>
-                                        <li>
-                                            <span className='flex items-center gap-1'>
-                                                <FaLocationDot />
-                                                <a href={!user ? "" : (!user ? "" : user.location)}>{!user ? "" : (!user.location ? "Dehli,India" : user.location)}</a>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span className='flex items-center gap-1'>
-                                                <IoIosLink />
-                                                <a href={!user ? "" : user.html_url}>{!user ? "" : user.html_url}</a>
-                                            </span>
-                                        </li>
-                                    </span>
-                                    <span className='flex flex-col gap-3'>
-                                        <li>
-                                            <span className='flex items-center gap-1'>
-                                                <FaTwitter />
-                                                <a href={!user ? "" : user.twitter_username}>{!user ? "" : (!user.twitter_username ? "Not Available" : user.twitter_username)}</a>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span className='flex items-center gap-1'>
-                                                <BsBuildingsFill />
-                                                <a href={!user ? "" : user.repos_url}>agitHub</a>
-                                            </span>
-                                        </li>
-                                    </span>
-                                </ul>
-                            </div>
+                        <div>
+                            <p className="text-xs">Followers</p>
+                            <p className="font-semibold">{user.followers}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs">Following</p>
+                            <p className="font-semibold">{user.following}</p>
                         </div>
                     </div>
 
-
+                    {/* Additional Info */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-sm">
+                        <div className="flex items-center gap-2">
+                            <FaLocationDot />
+                            <p>{user.location || "Not Available"}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <IoIosLink />
+                            <a
+                                href={user.html_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="truncate hover:underline"
+                            >
+                                {user.html_url}
+                            </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <FaTwitter />
+                            <p>{user.twitter_username || "Not Available"}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <BsBuildingsFill />
+                            <p>{user.company || "GitHub"}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className='mt-10 sm:mx-1'>
-                    <Link to={"/repos"} className='border-[1px] rounded-xl text-white text-xs p-2' type='button'>
-                        View All Repos
-                    </Link>
-                </div>
+            </div>
 
-            </>
-        )
-    }
-}
+            {/* View Repos Button */}
+            <div className="mt-8">
+                <Link
+                    to="/repos"
+                    className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-xl"
+                >
+                    View All Repos
+                </Link>
+            </div>
+        </div>
+    );
+};
 
-export default DetailsPage
+export default DetailsPage;

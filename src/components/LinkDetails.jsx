@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { GrFormView } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import { AiOutlineInfo } from "react-icons/ai";
@@ -6,52 +6,49 @@ import { CiForkAndKnife } from "react-icons/ci";
 import { IoIosLink } from "react-icons/io";
 import { useSelector } from 'react-redux';
 
-
 const LinkDetails = ({ repo }) => {
+  const { repos } = useSelector((state) => state.auth);
 
+  return (
+    <div className="w-full max-w-3xl mx-auto p-4 sm:p-6 border border-gray-700 rounded-xl bg-gray-900 text-gray-200 shadow-md transition hover:shadow-xl">
+      <div className="flex flex-col gap-2">
+        <span className="flex items-center gap-2 text-blue-300 font-semibold break-all">
+          <IoIosLink className="text-xl" />
+          <a
+            href={repo.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            {repo.name}
+          </a>
+        </span>
 
-    const { repos } = useSelector((state) => state.auth)
+        {repo.description && (
+          <p className="text-sm text-gray-400">{repo.description}</p>
+        )}
 
-    return (
-        <>
-            <div className='sm:p-5 sm:w-[70%] w-[80%] p-3  border-2 rounded-xl bg-gray-900 text-gray-400'>
-                <span className='flex items-center gap-1'>
-                    <IoIosLink />
-                    <a href={repo.html_url} >{repo.name}</a>
-                </span>
-                <p>{repo.description}</p>
-                <span>
-                    <ul className='flex gap-1 items-center mt-3 sm:px-5 px-2'>
-                        <li className='bg-blue-400 sm:px-5 px-2 rounded-xl text-black opacity-50'>
-                            <span className='flex items-center gap-1'>
-                                <GrFormView />
-                                <h1 className='text-xs'>{repo.watchers_count}</h1>
-                            </span>
-                        </li>
-                        <li className='bg-red-400 sm:px-5 px-2 rounded-xl text-black text-xs opacity-50'>
-                            <span className='flex items-center gap-1'>
-                                <FaStar />
-                                <h1 className='text-xs'>{repo.stargazers_count}</h1>
-                            </span>
-                        </li>
-                        <li className='bg-green-400 sm:px-5 px-2 rounded-xl text-black text-xs opacity-50'>
-                            <span className='flex items-center gap-1'>
-                                <AiOutlineInfo />
-                                <h1 className='text-xs'>{repo.open_issues_count}</h1>
-                            </span>
-                        </li>
-                        <li className='bg-yellow-400 sm:px-5 px-2 rounded-xl text-black text-xs opacity-50'>
-                            <span className='flex items-center gap-1'>
-                                <CiForkAndKnife />
-                                <h1 className='text-xs'>{repo.forks_count}</h1>
-                            </span>
-                        </li>
-                    </ul>
-                </span>
-            </div>
+        <ul className="flex flex-wrap gap-3 mt-4">
+          <li className="flex items-center gap-1 bg-blue-500/30 px-3 py-1 rounded-full text-xs text-white">
+            <GrFormView />
+            {repo.watchers_count}
+          </li>
+          <li className="flex items-center gap-1 bg-yellow-500/30 px-3 py-1 rounded-full text-xs text-white">
+            <FaStar />
+            {repo.stargazers_count}
+          </li>
+          <li className="flex items-center gap-1 bg-red-500/30 px-3 py-1 rounded-full text-xs text-white">
+            <AiOutlineInfo />
+            {repo.open_issues_count}
+          </li>
+          <li className="flex items-center gap-1 bg-green-500/30 px-3 py-1 rounded-full text-xs text-white">
+            <CiForkAndKnife />
+            {repo.forks_count}
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-        </>
-    )
-}
-
-export default LinkDetails
+export default LinkDetails;
