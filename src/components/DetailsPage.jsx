@@ -20,7 +20,7 @@ const DetailsPage = () => {
     if (!user) return null;
 
     return (
-        <div className="w-full min-h-screen px-4 py-8 sm:px-10 bg-[#141C2F] text-gray-300 flex flex-col items-center">
+        <div className="w-full min-h-screen px-0 py-8 sm:px-10 bg-[#141C2F] text-gray-300 flex flex-col items-center">
             <div className="w-full max-w-4xl bg-[#1F2A48] border border-gray-600 rounded-2xl p-6 sm:p-10 shadow-md flex flex-col sm:flex-row gap-6">
                 {/* Profile Image */}
                 <div className="flex justify-center sm:justify-start">
